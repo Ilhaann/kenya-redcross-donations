@@ -62,7 +62,7 @@ const HeroSection = () => {
               size="lg"
               className="rounded-full bg-accent px-8 text-base font-bold text-accent-foreground shadow-lg hover:bg-accent/90"
             >
-              <a href="/donations" target="_blank" rel="noopener noreferrer">
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                 Donate Now <Heart className="ml-2 h-4 w-4 fill-current" />
               </a>
             </Button>

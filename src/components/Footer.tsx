@@ -11,10 +11,12 @@ const Footer = () => {
             <p className="text-sm text-primary-foreground/80">Your donation saves lives across Kenya.</p>
           </div>
           <a
-            href="/donations"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
             className="rounded-full bg-accent px-8 py-3 text-base font-bold text-accent-foreground shadow-lg transition-colors hover:bg-accent/90"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           >
             Donate Now ❤️
           </a>
@@ -64,7 +66,7 @@ const Footer = () => {
               <li><a href="#campaigns" className="transition-colors hover:text-background">Campaigns</a></li>
               <li><a href="#news" className="transition-colors hover:text-background">News & Updates</a></li>
               <li><a href="#get-involved" className="transition-colors hover:text-background">Get Involved</a></li>
-              <li><a href="/donations" className="transition-colors hover:text-background">Donate</a></li>
+              <li><a href="#" className="transition-colors hover:text-background" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Donate</a></li>
             </ul>
           </div>
 
