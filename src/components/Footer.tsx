@@ -1,4 +1,5 @@
 import { Heart, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,12 +11,12 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-primary-foreground md:text-2xl">Ready to make a difference?</h3>
             <p className="text-sm text-primary-foreground/80">Your donation saves lives across Kenya.</p>
           </div>
-          <a
-            href="/donations"
+          <Link
+            to="/donations"
             className="rounded-full bg-accent px-8 py-3 text-base font-bold text-accent-foreground shadow-lg transition-colors hover:bg-accent/90"
           >
             Donate Now ❤️
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -62,7 +63,7 @@ const Footer = () => {
               <li><a href="#campaigns" className="transition-colors hover:text-background">Campaigns</a></li>
               <li><a href="#news" className="transition-colors hover:text-background">News & Updates</a></li>
               <li><a href="#get-involved" className="transition-colors hover:text-background">Get Involved</a></li>
-              <li><a href="/donations" className="transition-colors hover:text-background">Donate</a></li>
+              <li><Link to="/donations" className="transition-colors hover:text-background">Donate</Link></li>
             </ul>
           </div>
 

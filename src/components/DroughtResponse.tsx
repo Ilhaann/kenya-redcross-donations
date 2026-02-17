@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Droplets, Apple, Users, Wrench, MapPin, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
 import droughtImage from "@/assets/hero-drought-response.jpg";
 
@@ -146,9 +147,9 @@ const DroughtResponse = () => {
               size="lg"
               className="w-full rounded-full bg-primary text-base font-bold text-primary-foreground shadow-lg hover:bg-primary/90"
             >
-              <a href="/donations">
+              <Link to="/donations">
                 Donate to Drought Response ❤️
-              </a>
+              </Link>
             </Button>
           </motion.div>
         </div>
