@@ -1,5 +1,3 @@
-"use client"
-
 import { NavProvider, useNav } from "@/lib/nav-context"
 import { ModalProvider } from "@/lib/modal-context"
 import { AppNav } from "@/components/layout/app-nav"
