@@ -146,7 +146,7 @@ const DroughtResponse = () => {
               size="lg"
               className="w-full rounded-full bg-primary text-base font-bold text-primary-foreground shadow-lg hover:bg-primary/90"
             >
-              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+              <a href="/donations">
                 Donate to Drought Response ❤️
               </a>
             </Button>
