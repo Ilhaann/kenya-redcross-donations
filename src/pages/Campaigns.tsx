@@ -6,97 +6,19 @@ import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { 
+  campaigns, 
+  getCampaignsByCategory, 
+  getFeaturedCampaigns, 
+  getUrgentCampaigns,
+  formatCurrency,
+  getProgressPercentage,
+  type Campaign 
+} from "@/lib/campaign-data";
 
 const Campaigns = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   
-  const campaigns = [
-    {
-      id: 1,
-      image: "/campaign-water.jpg",
-      tag: "URGENT",
-      title: "Clean Water for Drought-Hit Communities",
-      description: "Provide clean drinking water to 300,000 households in arid counties through water trucking and source rehabilitation.",
-      raised: 12500000,
-      goal: 45000000,
-      donors: 2340,
-      daysLeft: 28,
-      category: "emergency",
-      location: "Turkana, Mandera, Samburu",
-      impact: "300,000 people"
-    },
-    {
-      id: 2,
-      image: "/campaign-nutrition.jpg",
-      tag: "ONGOING",
-      title: "Child Nutrition & Maternal Health",
-      description: "Support nutrition services for 784,000 children and 134,000 pregnant & breastfeeding women facing malnutrition.",
-      raised: 8200000,
-      goal: 30000000,
-      donors: 1856,
-      daysLeft: 45,
-      category: "health",
-      location: "10 affected counties",
-      impact: "918,000 beneficiaries"
-    },
-    {
-      id: 3,
-      image: "/campaign-food.jpg",
-      tag: "CRITICAL",
-      title: "Emergency Food Relief",
-      description: "Distribute essential food supplies to families facing severe food insecurity across drought-stricken regions.",
-      raised: 5600000,
-      goal: 25000000,
-      donors: 1234,
-      daysLeft: 15,
-      category: "emergency",
-      location: "Garissa, Isiolo, Marsabit",
-      impact: "150,000 families"
-    },
-    {
-      id: 4,
-      image: "/campaign-shelter.jpg",
-      tag: "ONGOING",
-      title: "Shelter & Housing Support",
-      description: "Provide temporary shelter and housing materials for families displaced by climate-related disasters.",
-      raised: 3400000,
-      goal: 15000000,
-      donors: 892,
-      daysLeft: 60,
-      category: "shelter",
-      location: "Coastal region",
-      impact: "2,500 households"
-    },
-    {
-      id: 5,
-      image: "/campaign-education.jpg",
-      tag: "NEW",
-      title: "Education in Emergencies",
-      description: "Ensure continued education for children affected by emergencies through temporary learning centers.",
-      raised: 1200000,
-      goal: 8000000,
-      donors: 456,
-      daysLeft: 90,
-      category: "education",
-      location: "Multiple counties",
-      impact: "5,000 students"
-    },
-    {
-      id: 6,
-      image: "/campaign-medical.jpg",
-      tag: "ONGOING",
-      title: "Medical Emergency Response",
-      description: "Deploy medical teams and supplies to remote areas with limited healthcare access.",
-      raised: 6800000,
-      goal: 20000000,
-      donors: 1567,
-      daysLeft: 35,
-      category: "health",
-      location: "Northern Kenya",
-      impact: "100,000 patients"
-    }
-  ];
-
   const filters = [
     { id: "all", label: "All Campaigns" },
     { id: "emergency", label: "Emergency" },
@@ -107,20 +29,10 @@ const Campaigns = () => {
 
   const filteredCampaigns = activeFilter === "all" 
     ? campaigns 
-    : campaigns.filter(campaign => campaign.category === activeFilter);
+    : getCampaignsByCategory(activeFilter);
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'KES',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
-
-  const getProgressPercentage = (raised: number, goal: number) => {
-    return Math.min((raised / goal) * 100, 100);
-  };
+  const featuredCampaigns = getFeaturedCampaigns();
+  const urgentCampaigns = getUrgentCampaigns();
 
   return (
     <div className="min-h-screen bg-background">

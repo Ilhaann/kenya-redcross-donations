@@ -1,4 +1,5 @@
 import EmergencyBanner from "@/components/EmergencyBanner";
+import EmergencyAlerts from "@/components/EmergencyAlerts";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ImpactStats from "@/components/ImpactStats";
@@ -16,6 +17,7 @@ const Index = () => {
       <EmergencyBanner />
       <Navbar />
       <main>
+        <EmergencyAlerts />
         <HeroSection />
         <ImpactStats />
         <DroughtResponse />
