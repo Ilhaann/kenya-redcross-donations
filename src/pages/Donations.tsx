@@ -1,5 +1,5 @@
-import { DonationApp } from "@/components/donation-app"
+import { SimpleDonationFlow } from "@/components/SimpleDonationFlow";
 
 export default function DonationsPage() {
-  return <DonationApp />
+  return <SimpleDonationFlow />
 }
