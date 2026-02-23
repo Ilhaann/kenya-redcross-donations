@@ -1,85 +1,54 @@
 import { motion } from "framer-motion";
-import { Shield, Heart, Users, Building, Sparkles, Droplets, Baby, Ambulance, School, ArrowRight, Calendar, TrendingUp, Award, MapPin, Phone, Mail } from "lucide-react";
+import { Shield, Heart, Droplets, Baby, Ambulance, School, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import EnhancedPrograms from "./EnhancedPrograms";
-import { 
-  programs, 
-  getProgramById, 
-  getProgramsByCategory, 
-  formatNumber,
-  type Program 
-} from "@/lib/program-data";
 
 const Programs = () => {
-  const [programData, setProgramData] = useState(programs);
-      impact: "1M+ health interventions yearly",
+  const programs = [
+    {
+      id: "disaster-management",
+      title: "Disaster Management",
+      description: "Rapid response to save lives, protect livelihoods, and strengthen recovery from disasters and crises.",
+      icon: Shield,
+      color: "text-red-600"
+    },
+    {
+      id: "health-services",
+      title: "Health Services",
+      description: "Providing essential healthcare services, medical camps, and health education to communities across Kenya.",
+      icon: Heart,
       color: "text-pink-600"
     },
     {
-      icon: Users,
-      title: "Youth Development",
-      description: "Empowering young people through volunteerism, leadership training, and sustainable action programs.",
-      features: [
-        "Youth Red Cross clubs",
-        "Leadership development",
-        "Community service projects",
-        "Skills training programs"
-      ],
-      impact: "50,000+ youth engaged annually",
+      id: "water-sanitation",
+      title: "Water & Sanitation",
+      description: "Ensuring access to clean water and proper sanitation facilities to prevent waterborne diseases.",
+      icon: Droplets,
       color: "text-blue-600"
     },
     {
-      icon: Building,
-      title: "National Development",
-      description: "Building organizational capacity across branches and volunteer networks for sustainable impact.",
-      features: [
-        "Branch capacity building",
-        "Volunteer management",
-        "Resource mobilization",
-        "Partnership development"
-      ],
-      impact: "47 county branches strengthened",
+      id: "education",
+      title: "Education Programs",
+      description: "Supporting educational initiatives, providing learning materials, and promoting literacy in underserved areas.",
+      icon: School,
       color: "text-green-600"
     },
     {
-      icon: Sparkles,
-      title: "Special Programmes",
-      description: "Targeted initiatives addressing the unique needs of vulnerable communities across Kenya.",
-      features: [
-        "Gender-based violence prevention",
-        "Social inclusion programs",
-        "Livelihood support",
-        "Protection services"
-      ],
-      impact: "200,000+ vulnerable people supported",
+      id: "maternal-health",
+      title: "Maternal Health",
+      description: "Improving maternal and child health through specialized care, education, and support programs.",
+      icon: Baby,
       color: "text-purple-600"
-    }
-  ];
-
-  const ongoingProjects = [
-    {
-      title: "Drought Emergency Response 2026",
-      description: "Comprehensive response to severe drought affecting 10 counties",
-      status: "Active",
-      progress: 65
     },
     {
-      title: "Maternal Health Initiative",
-      description: "Reducing maternal mortality in rural communities",
-      status: "Active", 
-      progress: 78
-    },
-    {
-      title: "Youth Climate Action",
-      description: "Engaging youth in climate resilience and environmental conservation",
-      status: "Planning",
-      progress: 25
+      id: "emergency-response",
+      title: "Emergency Response",
+      description: "24/7 emergency medical response teams ready to provide immediate assistance during crises.",
+      icon: Ambulance,
+      color: "text-orange-600"
     }
   ];
 
@@ -91,117 +60,93 @@ const Programs = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
           <h1 className="mb-6 text-4xl font-bold text-foreground md:text-6xl">
-            What We Do
+            Our Programs
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-muted-foreground">
-            Our programs address Kenya's most pressing humanitarian challenges through 
-            coordinated action, community engagement, and sustainable solutions.
+            Discover how Kenya Red Cross is making a difference through our comprehensive programs 
+            designed to save lives, support communities, and build resilience across Kenya.
           </p>
         </motion.div>
 
-        {/* Main Programs Grid */}
+        {/* Programs Grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mb-16"
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {programs.map((program, index) => (
-              <motion.div
-                key={program.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                className="rounded-2xl border border-border bg-card p-8 shadow-lg"
-              >
-                <program.icon className={`mb-4 h-12 w-12 ${program.color}`} />
-                <h3 className="mb-3 text-xl font-bold text-foreground">{program.title}</h3>
-                <p className="mb-4 text-muted-foreground">{program.description}</p>
-                
-                <ul className="mb-6 space-y-2">
-                  {program.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <div className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="rounded-lg bg-primary/10 p-3">
-                  <p className="text-sm font-semibold text-primary">{program.impact}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Ongoing Projects */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mb-16"
-        >
-          <h2 className="mb-8 text-center text-3xl font-bold text-foreground">
-            Active Projects
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {ongoingProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0 + index * 0.1 }}
-                className="rounded-xl border border-border bg-card p-6"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
-                  <span className={`rounded-full px-3 py-1 text-xs font-medium ${
-                    project.status === 'Active' 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-yellow-100 text-yellow-800'
-                  }`}>
-                    {project.status}
-                  </span>
-                </div>
-                <p className="mb-4 text-sm text-muted-foreground">{project.description}</p>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span>Progress</span>
-                    <span className="font-semibold">{project.progress}%</span>
+          {programs.map((program, index) => (
+            <motion.div
+              key={program.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group"
+            >
+              <Card className="overflow-hidden border-2 border-border bg-card transition-all duration-300 hover:shadow-xl hover:border-primary/40">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <program.icon className={`h-8 w-8 ${program.color}`} />
+                    <h3 className="text-xl font-bold text-foreground">{program.title}</h3>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-gray-200">
-                    <div 
-                      className="h-2 rounded-full bg-primary transition-all duration-300"
-                      style={{ width: `${project.progress}%` }}
-                    />
+                </CardHeader>
+                <CardContent className="p-6">
+                  <p className="mb-6 text-muted-foreground">{program.description}</p>
+                  
+                  <div className="space-y-4">
+                    <Link 
+                      to={`/programs/${program.id}`}
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium"
+                    >
+                      Learn More
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    
+                    <div className="pt-4 border-t">
+                      <Button 
+                        className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+                      >
+                        Support This Program
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="rounded-2xl bg-gradient-to-r from-primary to-primary/80 p-8 text-center text-primary-foreground"
+          transition={{ delay: 0.8 }}
+          className="mt-16"
         >
-          <h2 className="mb-4 text-2xl font-bold">Support Our Programs</h2>
-          <p className="mb-6 text-lg">
-            Your donation helps us continue our vital work across all 47 counties in Kenya.
-          </p>
-          <Button asChild size="lg" className="rounded-full bg-accent px-8 font-bold text-accent-foreground hover:bg-accent/90">
-            <Link to="/donations">
-              Donate Now
-            </Link>
-          </Button>
+          <div className="rounded-2xl bg-gradient-to-r from-primary to-primary/80 p-8 text-center text-primary-foreground">
+            <h2 className="mb-4 text-2xl font-bold">Get Involved</h2>
+            <p className="mb-6 text-lg">
+              Join us in our mission to save lives and support communities across Kenya. 
+              Your contribution can make a real difference.
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
+              <Button size="lg" className="rounded-full bg-accent px-8 text-lg font-bold text-accent-foreground hover:bg-accent/90">
+                <Link to="/donations">
+                  Donate Now
+                  <Heart className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-full border-accent-foreground/40 bg-accent/10 px-8 text-lg font-semibold text-accent-foreground backdrop-blur-sm hover:bg-accent/20 hover:text-accent-foreground">
+                <Link to="/get-involved">
+                  Volunteer
+                </Link>
+              </Button>
+            </div>
+          </div>
         </motion.div>
       </main>
       <Footer />

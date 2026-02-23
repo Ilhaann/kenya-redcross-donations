@@ -105,7 +105,6 @@ const EnhancedPrograms = () => {
                         </span>
                       </div>
                     </div>
-                    </div>
                     <CardHeader>
                       <div className="flex items-center gap-3">
                         <program.icon className="h-8 w-8 text-primary" />
