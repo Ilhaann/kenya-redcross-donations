@@ -1,35 +1,23 @@
 import { motion } from "framer-motion";
-import { Shield, Heart, Users, Building, Sparkles, Droplets, Baby, Ambulance, School } from "lucide-react";
+import { Shield, Heart, Users, Building, Sparkles, Droplets, Baby, Ambulance, School, ArrowRight, Calendar, TrendingUp, Award, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import EnhancedPrograms from "./EnhancedPrograms";
+import { 
+  programs, 
+  getProgramById, 
+  getProgramsByCategory, 
+  formatNumber,
+  type Program 
+} from "@/lib/program-data";
 
 const Programs = () => {
-  const programs = [
-    {
-      icon: Shield,
-      title: "Disaster Management",
-      description: "Rapid response to save lives, protect livelihoods, and strengthen recovery from disasters and crises across Kenya.",
-      features: [
-        "Emergency relief distribution",
-        "Search and rescue operations", 
-        "Temporary shelter management",
-        "Family tracing services"
-      ],
-      impact: "500,000+ people assisted annually",
-      color: "text-red-600"
-    },
-    {
-      icon: Heart,
-      title: "Health Services",
-      description: "Providing affordable, accessible and equitable community-based health care services nationwide.",
-      features: [
-        "Primary health care clinics",
-        "Maternal and child health",
-        "Disease prevention programs",
-        "Health education campaigns"
-      ],
+  const [programData, setProgramData] = useState(programs);
       impact: "1M+ health interventions yearly",
       color: "text-pink-600"
     },
