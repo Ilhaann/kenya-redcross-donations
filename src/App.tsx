@@ -12,6 +12,7 @@ import News from "./pages/News";
 import GetInvolved from "./pages/GetInvolved";
 import Contact from "./pages/Contact";
 import Donations from "./pages/Donations";
+import P2PFundraising from "./pages/P2PFundraising";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donations" element={<Donations />} />
+          <Route path="/p2p" element={<P2PFundraising />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
