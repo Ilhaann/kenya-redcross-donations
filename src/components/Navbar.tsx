@@ -1,27 +1,33 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "Who We Are", href: "#about" },
-  { label: "What We Do", href: "#programs" },
-  { label: "Campaigns", href: "#campaigns" },
-  { label: "News", href: "#news" },
-  { label: "Get Involved", href: "#get-involved" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Who We Are", href: "/about" },
+  { label: "What We Do", href: "/programs" },
+  { label: "Campaigns", href: "/campaigns" },
+  { label: "News", href: "/news" },
+  { label: "Get Involved", href: "/get-involved" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   return (
     <>
@@ -59,32 +65,32 @@ const Navbar = () => {
       >
         <div className="container mx-auto flex items-center justify-between px-4 py-3">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <img src="/favicon.png" alt="Kenya Red Cross Logo" className="h-10 w-10 rounded-full object-contain" />
             <div className="leading-tight">
               <span className="text-lg font-bold text-foreground">Kenya</span>
               <span className="block text-xs font-medium text-primary">Red Cross Society</span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden items-center gap-7 lg:flex">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           <div className="hidden lg:block">
             <Button asChild className="rounded-full bg-primary px-6 font-semibold text-primary-foreground hover:bg-primary/90">
-              <a href="/donations">
+              <Link to="/donations">
                 Donate
-              </a>
+              </Link>
             </Button>
           </div>
 
@@ -108,19 +114,18 @@ const Navbar = () => {
             >
               <div className="container mx-auto flex flex-col gap-4 px-4 py-6">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    to={link.href}
                     className="text-base font-medium text-foreground transition-colors hover:text-primary"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
                 <Button asChild className="mt-2 rounded-full bg-primary font-semibold text-primary-foreground">
-                  <a href="/donations">
+                  <Link to="/donations">
                     Donate Now
-                  </a>
+                  </Link>
                 </Button>
               </div>
             </motion.div>
